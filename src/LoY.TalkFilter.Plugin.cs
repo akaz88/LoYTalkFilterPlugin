@@ -8,13 +8,13 @@ using Experience;
 
 //削除キー：loyosaka
 //https://dotup.org/uploda/dotup.org2853958.zip.html
-namespace LoYOsakaPlugin
+namespace LoYTalkFilterPlugin
 {
 
-[BepInPlugin("LoY.Osaka.Plugin", "LoY Osaka-Ben Plug-In", "0.0.0.1")]
-public class LoYOsakaPlugin : BaseUnityPlugin
+[BepInPlugin("LoY.TalkFilter.Plugin", "LoY TalkFilter Plug-In", "0.0.0.2")]
+public class LoYTalkFilterPlugin : BaseUnityPlugin
 {
-    static readonly string id = "LoY.Osaka.Plugin.Patcher";
+    static readonly string id = "LoY.TalkFilter.Plugin.Patcher";
     static OsakaTranslator osk = new OsakaTranslator();
 
     public void Awake()
@@ -26,7 +26,7 @@ public class LoYOsakaPlugin : BaseUnityPlugin
         hm.Patch(org, postfix: new HarmonyMethod(hook));
 
         //Console.Write("------------------------------");
-        //Console.Write("Osaka Plugin loaded.");
+        //Console.Write("TalkFilter Plugin loaded.");
         //Console.Write("------------------------------");
     }
 

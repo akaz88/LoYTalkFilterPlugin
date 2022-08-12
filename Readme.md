@@ -20,6 +20,9 @@ Labyrinth of Yomi.exeとwinhttp.dllが同じフォルダに存在するように
 ここに本MODのBepInExフォルダをそのまま上書きします。<br>
 例えばC:\Program Files (x86)\Steam\steamapps\common\Undernauts Labyrinth of Yomi\BepInEx\plugins\LoY.Osaka.Plugin.dllというような階層になっていればOK。
 
+## コンパイル
+
+'  '
 
 ## change log
 

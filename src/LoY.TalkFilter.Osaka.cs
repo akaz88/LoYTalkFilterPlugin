@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 
-namespace LoYOsakaPlugin
+namespace LoYTalkFilterPlugin
 {
 
 /* 大阪弁変換クラス
