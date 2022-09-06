@@ -12,7 +12,7 @@ using BepInEx;
 using NMeCab;
 
 
-namespace LoYTalkFilterPlugin
+namespace LoYTalkFilter
 {
 
 /* 壱百満天原サロメお嬢様風の口調風変換風クラス

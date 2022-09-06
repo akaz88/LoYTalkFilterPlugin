@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LoYTalkFilterPlugin
+namespace LoYTalkFilter
 {
 
 /* internal/pos/pos.goより拝借&一部追加 */

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 
-namespace LoYTalkFilterPlugin
+namespace LoYTalkFilter
 {
 
 /* 大阪弁変換クラス

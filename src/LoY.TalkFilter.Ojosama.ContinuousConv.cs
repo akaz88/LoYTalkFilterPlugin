@@ -7,7 +7,7 @@ using System.Linq;
 using NMeCab;
 
 
-namespace LoYTalkFilterPlugin
+namespace LoYTalkFilter
 {
 
 /* 特定の単語が連続したら一つの単語として結合するための変換ルール

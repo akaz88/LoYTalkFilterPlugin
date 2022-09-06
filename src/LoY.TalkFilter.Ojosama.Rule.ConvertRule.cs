@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace LoYTalkFilterPlugin
+namespace LoYTalkFilter
 {
 
 class RuleConvertRule
