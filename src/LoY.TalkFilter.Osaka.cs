@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -19,7 +20,8 @@ class OsakaTranslator
 
     public string translate_talk(string str)
     {
-        Match m = pt.Match(str);
+        //Console.Write("[Osaka]");
+        Match m = this.pt.Match(str);
         if(m == Match.Empty)
             return str;
         return str.Replace(m.Value, this.translate(m.Value));
@@ -27,7 +29,7 @@ class OsakaTranslator
 
     public string translate(string str)
     {
-        return this.re.Replace(str, m => table[m.Value]);
+        return this.re.Replace(str, m => this.table[m.Value]);
     }
 
     public OsakaTranslator()
@@ -3128,8 +3130,8 @@ class OsakaTranslator
             {"例えば", "例あげたろか、たとえばやなあ"},
             {"老いました", "老けたんや"}
         };
-        this.re = new Regex(String.Join("|", table.Keys));
-        this.pt = new Regex("「(.|\n)+」");
+        this.re = new Regex(String.Join("|", this.table.Keys));
+        this.pt = new Regex("[「|｢](.|\n)+[」|｣]");
     }
 }
 

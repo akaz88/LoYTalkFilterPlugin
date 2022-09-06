@@ -27,7 +27,12 @@ Labyrinth of Yomi.exeとwinhttp.dllが同じフォルダに存在するように
 ## change log
 
 0.0.1
-        公開
+- 公開
+
+0.0.2
+- 壱百満天原サロメお嬢様風の口調風変換を追加
+- LoY.Osaka.Pluginから改名
+- LoY.Util.Pluginにフラグ変数を提供するよう変更
 
 
 ## 開発環境
