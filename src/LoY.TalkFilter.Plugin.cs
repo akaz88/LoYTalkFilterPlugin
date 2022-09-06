@@ -11,8 +11,6 @@ using Experience.ScriptEvent;
 using LoYUtil;
 
 
-//削除キー：loyosaka
-//https://dotup.org/uploda/dotup.org2853958.zip.html
 namespace LoYTalkFilter
 {
 
