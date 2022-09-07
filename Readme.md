@@ -40,7 +40,7 @@ OSDNからNMeCab 0.07をダウンロードし、NMeCab0.07.zipからdicフォル
 BepInEx\config\LoY.TalkFilter.Plugin.cfgとして自動で設定されます。<br>
 以下の三種が有効となっていますが、デフォルトでは"無効"となっています。<br>
 - 無効
-　　- 変換を行いません
+  - 変換を行いません
 - 大阪
   - 大阪弁に変換します
 - お嬢様
