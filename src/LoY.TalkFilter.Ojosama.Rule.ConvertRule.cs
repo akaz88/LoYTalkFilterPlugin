@@ -317,6 +317,26 @@ class RuleConvertRule
                         new Token("か", PoS.type.SubParEndParticle)
                     }
                 ),
+                new ConvertRule(
+                    "くださいません",
+                    new List<Token>{
+                        new Token("くれ", PoS.type.VerbNotIndependence),
+                        new Token("ない", PoS.type.AuxiliaryVerb)
+                    }
+                ),
+                new ConvertRule(
+                    "ですわ",
+                    new Token[]{
+                        new Token("よう", "名詞,非自立,助動詞語幹")
+                    }
+                ),
+                new ConvertRule(
+                    "パパ上",
+                    new Token[]{
+                        new Token("おとうさま", PoS.type.NounsGeneral)
+                    },
+                    ignore_after:new Token("上")
+                ),
                 /*
                 new ConvertRule(
                     "",
@@ -741,7 +761,8 @@ class RuleConvertRule
                     new Token[]{
                         new Token("わ", PoS.type.SentenceEndingParticle)
                     },
-                    true, true
+                    true, true,
+                    ignore_before: new Token("", "記号,空白")
                 ),
                 new ConvertRule(
                     "ね",
@@ -796,7 +817,8 @@ class RuleConvertRule
                         new Token("た", PoS.type.AuxiliaryVerb)
                     },
                     true, true,
-                    before_sep: true
+                    before_sep: true,
+                    ignore_before: new Token("", "記号,空白")
                 ),
                 new ConvertRule(
                     "でしょう",

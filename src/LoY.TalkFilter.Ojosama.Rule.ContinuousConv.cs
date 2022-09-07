@@ -141,6 +141,10 @@ class RuleContinuousConv
                     new string[]{"『", "久世戸", "様", "』"}
                 ),
                 new ContinuousConv(
+                    PoS.type.NounsGeneral,
+                    new string[]{"お", "とう", "さま"}
+                ),
+                new ContinuousConv(
                     PoS.type.SpecificGeneral,
                     new string[]{"看守", "長"}
                 ),

@@ -36,6 +36,8 @@ class OjosamaTranslator
 
     public string translate_talk(string str)
     {
+        if(str == null || str == "")
+            return str;
         //改行はNMeCabが削除してしまうので適当な改行タグに置き換え
         str = str.Replace("\n", "<br>");
         Match m = this.pt.Match(str);
@@ -272,7 +274,7 @@ class OjosamaTranslator
                 "エルダー", "当て所", "運", "異邦人", "魂", "魔王",
                 "臭い", "竜王", "汗", "獣", "神", "たち", "情熱",
                 "歌姫", "辺境", "舞台", "瞳", "竜", "姫", "闇",
-                "光の騎士"
+                "光の騎士", "ルキ"
             };
         //以下2つはいっぱいありすぎたんで別ファイルに移動
         this.continous = RuleContinuousConv.load();

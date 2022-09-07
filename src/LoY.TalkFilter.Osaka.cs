@@ -20,6 +20,8 @@ class OsakaTranslator
 
     public string translate_talk(string str)
     {
+        if(str == null || str == "")
+            return str;
         Match m = this.pt.Match(str);
         if(m == Match.Empty)
             return str;

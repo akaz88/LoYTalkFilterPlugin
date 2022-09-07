@@ -46,18 +46,20 @@ public class LoYTalkFilterPlugin : BaseUnityPlugin
         switch(ttype.Value)
         {
             case "無効":
+                LoYUtilPlugin.mgr.set_flag(ModTalkFilter, false);
                 return;
             case "大阪弁":
                 hook = tp.GetMethod("get_OsakaText");
                 osk = new OsakaTranslator();
-                LoYUtilPlugin.mgr.add_flag(TalkFilterOsaka, true);
+                LoYUtilPlugin.mgr.set_flag(TalkFilterOsaka, true);
                 break;
             case "お嬢様":
                 hook = tp.GetMethod("get_OjosamaText");
                 ojs = new OjosamaTranslator();
-                LoYUtilPlugin.mgr.add_flag(TalkFilterOjosama, true);
+                LoYUtilPlugin.mgr.set_flag(TalkFilterOjosama, true);
                 break;
             default:
+                LoYUtilPlugin.mgr.set_flag(ModTalkFilter, false);
                 Console.Write("ttype.Value is not valid.");
                 return;
         }
