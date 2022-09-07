@@ -44,7 +44,7 @@ BepInEx\config\LoY.TalkFilter.Plugin.cfgとして自動で設定されます。<
 - 大阪
   - 大阪弁に変換します
 - お嬢様
-  - お嬢様風に変換します
+  - お嬢様風に変換します(experimental)
   - あんまりうまく変換されない場合がほとんどです
 
 ## LoYUtilPlugin用MODファイル
