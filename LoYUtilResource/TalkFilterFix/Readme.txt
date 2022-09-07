@@ -1,0 +1,4 @@
+LoYTalkFilterPlugin用会話文修正MOD
+
+
+LoYTalkFilterPluginでは変換処理の不可能な赤ルキ襲撃イベントの会話文をスクリプト側で修正します。

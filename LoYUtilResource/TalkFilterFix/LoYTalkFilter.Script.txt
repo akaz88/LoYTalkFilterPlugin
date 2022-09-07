@@ -1,0 +1,37 @@
+replace:42-48
+key: Rage_EventEnemy
+
+_if:ScriptFlag:flag(TalkFilterOsaka)
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(大阪ルキRAGEBLOOD_1):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(大阪ルキRAGEBLOOD_2):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(大阪ルキRAGEBLOOD_3):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(大阪ルキRAGEBLOOD_4):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(大阪ルキRAGEBLOOD_5):Align(4)
+_elif:ScriptFlag:flag(TalkFilterOjosama)
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_1):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_2):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_3):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_4):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_5):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_6):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(ルキお嬢様RAGEBLOOD_7):Align(4)
+_else
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(赤ルキRAGEBLOOD_0020):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(赤ルキRAGEBLOOD_0049):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(赤ルキRAGEBLOOD_0050):Align(4)
+	_wait_seconds:1
+	_message_scenario_line_align_left:ScenarioWindowPositionType(0):TextId(赤ルキRAGEBLOOD_0051):Align(4)
+_endif
+
