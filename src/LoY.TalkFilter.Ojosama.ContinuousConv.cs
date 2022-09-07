@@ -15,10 +15,6 @@ namespace LoYTalkFilter
  */
 class ContinuousConv
     {
-        //string to;
-            //結合後の単語
-        //PoS.type type;
-            //結合後の単語のタイプ
         string[] pattern;
             //連続パターン
         public Token token;
@@ -47,6 +43,9 @@ class ContinuousConv
                 );
         }
 
+        /* 対象ノードがpatternとマッチするかどうか検査
+         * マッチしない場合は元のnodeを返すが、マッチした場合はpattern分nodeを進めて返す
+         */
         public MeCabNode match(MeCabNode node)
         {
             MeCabNode p = node;
@@ -58,6 +57,7 @@ class ContinuousConv
                     return node;
                 p = p.Next;
             }
+            //for文を抜けるときにp.Nextされてるので一つ戻してやる必要がある
             return p.Prev;
         }
 

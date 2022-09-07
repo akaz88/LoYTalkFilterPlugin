@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace LoYTalkFilter
 {
 
+/* OjosamaTranslatorのコンストラクタで使うための結合ルール */
 class RuleContinuousConv
 {
     internal static List<ContinuousConv> load()

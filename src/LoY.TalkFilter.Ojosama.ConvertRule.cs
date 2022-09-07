@@ -71,7 +71,7 @@ class ConvertRule
                     {
                         //バグりそうな気がする
                         --cnt;
-                        this.cost -= 1;
+                        --this.cost;
                     }
 #pragma warning restore CS0642
                 //通常はマッチしなかったら失敗

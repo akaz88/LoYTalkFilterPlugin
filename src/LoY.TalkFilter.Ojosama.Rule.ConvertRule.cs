@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace LoYTalkFilter
 {
 
+/* OjosamaTranslatorのコンストラクタで使うための変換ルール */
 class RuleConvertRule
 {
     internal static List<ConvertRule> load()

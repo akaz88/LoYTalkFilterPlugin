@@ -6,28 +6,28 @@ namespace LoYTalkFilter
 {
 
 /* internal/pos/pos.goより拝借&一部追加 */
-    class PoS
+class PoS
     {
-        public static string[] PronounGeneral = new string[]{"名詞", "代名詞", "一般"};
-        public static string[] NounsGeneral = new string[]{"名詞", "一般"};
-        public static string[] SpecificGeneral = new string[]{"名詞", "固有名詞", "一般"};
-        public static string[] NotIndependenceGeneral = new string[]{"名詞", "非自立", "一般"};
-        public static string[] AdnominalAdjective = new string[]{"連体詞"};
-        public static string[] AdjectivesSelfSupporting = new string[]{"形容詞", "自立"};
-        public static string[] Interjection = new string[]{"感動詞"};
-        public static string[] VerbIndependence = new string[]{"動詞", "自立"};
-        public static string[] VerbNotIndependence = new string[]{"動詞", "非自立"};
-        public static string[] SentenceEndingParticle = new string[]{"助詞", "終助詞"};
-        public static string[] SubPostpositionalParticle = new string[]{"助詞", "副助詞"};
-        public static string[] AssistantParallelParticle = new string[]{"助詞", "並立助詞"};
-        public static string[] SubParEndParticle = new string[]{"助詞", "副助詞／並立助詞／終助詞"};
-        public static string[] ConnAssistant = new string[]{"助詞", "接続助詞"};
-        public static string[] AuxiliaryVerb = new string[]{"助動詞"};
-        public static string[] NounsSaDynamic = new string[]{"名詞", "サ変接続"};
+        public static readonly string[] PronounGeneral = new string[]{"名詞", "代名詞", "一般"};
+        public static readonly string[] NounsGeneral = new string[]{"名詞", "一般"};
+        public static readonly string[] SpecificGeneral = new string[]{"名詞", "固有名詞", "一般"};
+        public static readonly string[] NotIndependenceGeneral = new string[]{"名詞", "非自立", "一般"};
+        public static readonly string[] AdnominalAdjective = new string[]{"連体詞"};
+        public static readonly string[] AdjectivesSelfSupporting = new string[]{"形容詞", "自立"};
+        public static readonly string[] Interjection = new string[]{"感動詞"};
+        public static readonly string[] VerbIndependence = new string[]{"動詞", "自立"};
+        public static readonly string[] VerbNotIndependence = new string[]{"動詞", "非自立"};
+        public static readonly string[] SentenceEndingParticle = new string[]{"助詞", "終助詞"};
+        public static readonly string[] SubPostpositionalParticle = new string[]{"助詞", "副助詞"};
+        public static readonly string[] AssistantParallelParticle = new string[]{"助詞", "並立助詞"};
+        public static readonly string[] SubParEndParticle = new string[]{"助詞", "副助詞／並立助詞／終助詞"};
+        public static readonly string[] ConnAssistant = new string[]{"助詞", "接続助詞"};
+        public static readonly string[] AuxiliaryVerb = new string[]{"助動詞"};
+        public static readonly string[] NounsSaDynamic = new string[]{"名詞", "サ変接続"};
         //句読点を追加
-        public static string[] Period = new string[]{"記号", "句点"};
-        public static string[] ReadingPoint = new string[]{"記号", "読点"};
-        public static string[] ConjunctionNoun = new string[]{"接頭詞", "名詞接続"};
+        public static readonly string[] Period = new string[]{"記号", "句点"};
+        public static readonly string[] ReadingPoint = new string[]{"記号", "読点"};
+        public static readonly string[] ConjunctionNoun = new string[]{"接頭詞", "名詞接続"};
         public enum type
         {
             NULL,
@@ -52,18 +52,9 @@ namespace LoYTalkFilter
             ConjunctionNoun
         };
 
+        /* feature(["名詞", "一般"]など)からtypeを選択して返す */
         public static type get_type(List<string> feat)
         {
-            //string[] feat = feature.Split(',');
-            /*if(feature == null)
-                return type.None;
-            string[] sp = feature.Split(',');
-            List<string> ls = new List<string>();
-            for(int i = 0; i < 6; ++i)
-                if(!sp[i].Equals("*"))
-                    ls.Add(sp[i]);
-            string[] feat = ls.ToArray();*/
-
             if(_cmp(feat, PronounGeneral))
                 return type.PronounGeneral;
             //SpecificGeneralを先に調べないとNounsGeneralに誤解釈される
@@ -107,6 +98,7 @@ namespace LoYTalkFilter
                 return type.None;
         }
 
+        /* typeからデフォルトのfeatureを返す */
         public static string[] get_feature(type t)
         {
             switch(t)
@@ -155,10 +147,8 @@ namespace LoYTalkFilter
             }
         }
 
-        //static bool _cmp(string[] feature, string[] pos)
         static bool _cmp(List<string> feature, string[] pos)
         {
-            //return feature.SequenceEqual(pos);
             foreach(var f in pos)
                 if(!feature.Contains(f))
                     return false;

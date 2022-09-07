@@ -117,32 +117,32 @@ class OjosamaTranslator
     /* 名詞+動詞+(助動詞)+終助詞の場合の語尾の変換
      * 例：野球しようぜ -> お野球をいたしませんこと
      */
-    int convertSentenceEndingParticle(List<Token> tokens, int cnt, ref string result)
+    int convertSentenceEndingParticle(List<Token> tokens, int i, ref string result)
     {
         int c = 0;
         //最低3個は必要
-        if(tokens.Count < (cnt + 3))
+        if(tokens.Count < (i + 3))
             return 0;
         //名詞/サ行変格
-        else if(tokens[cnt].type != PoS.type.NounsGeneral && tokens[cnt].type != PoS.type.NounsSaDynamic)
+        else if(tokens[i].type != PoS.type.NounsGeneral && tokens[i].type != PoS.type.NounsSaDynamic)
             return 0;
         //動詞
-        else if(tokens[cnt+1].type != PoS.type.VerbIndependence)
+        else if(tokens[i+1].type != PoS.type.VerbIndependence)
             return 0;
         //助動詞はあってもなくても良いが、スキップする必要がある
-        else if(tokens[cnt+2].type == PoS.type.AuxiliaryVerb)
+        else if(tokens[i+2].type == PoS.type.AuxiliaryVerb)
         {
             c = 1;
             //長さを再チェックする必要がある
-            if(tokens.Count < (cnt + 4))
+            if(tokens.Count < (i + 4))
                 return 0;
         }
         //終助詞
-        if(!tokens[cnt+2+c].cmp_feature("終助詞"))
+        if(!tokens[i+2+c].cmp_feature("終助詞"))
             return 0;
 
-        result += "お" + tokens[cnt].surface;
-        var end = tokens[cnt+2+c];
+        result += "お" + tokens[i].surface;
+        var end = tokens[i+2+c];
         //語尾を文脈に合わせたものにする
         //しようぜ -> をいたしませんこと
         if("ぜよべ".Contains(end.surface))
@@ -163,47 +163,48 @@ class OjosamaTranslator
      * また、ルールにマッチしなかった場合でも接頭辞付与可能である場合は接頭辞を付与
      * 本来ojosamaではここで"壱", "百", "満天", "原", "サロメ"の変換も行っていたが、
      * OjosamaTranslatorではTokenize中にconcat_tokenで変換するようにした
+     * ojosamaにおけるconvertContinuousConditionsとconvertを統合したような感じになっている
      */
-    int convertContinuousConditions(List<Token> tokens, int cnt, ref string result)
+    int convertContinuousConditions(List<Token> tokens, int i, ref string result)
     {
-        string prefix = append_prefix(tokens, cnt);
+        string prefix = append_prefix(tokens, i);
 
-        //"し", "ます" -> "いたしますわ"
         foreach(ConvertRule rule in this.rules)
         {
-            if(rule.match(tokens, cnt))
+            if(rule.match(tokens, i))
             {
 #if DEBUG
                 Console.WriteLine($"\t{rule}");
-                for(int i = 0; i < rule.cost; ++i)
-                    Console.WriteLine($"\t\t{cnt+i}: {tokens[cnt+i]}");
+                for(int j = 0; j < rule.cost; ++j)
+                    Console.WriteLine($"\t\t{i+j}: {tokens[i+j]}");
 #endif
                 result += prefix;
-                return rule.conv(tokens, cnt, ref result);
+                return rule.conv(tokens, i, ref result);
             }
         }
 
         if(prefix != "")
         {
-            result += prefix + tokens[cnt].surface;
+            result += prefix + tokens[i].surface;
             return 1;
         }
 
         return 0;
     }
 
-    //変換処理を無視してそのまま書き出す
-    //ルールをちゃんとコードに落とすの面倒だったんでそのまま書くことに
-    int matchExcludeRule(List<Token> tokens, int cnt, ref string result)
+    /* 変換処理を無視してそのまま書き出す
+     * ルールをちゃんとコードに落とすの面倒だったんでそのまま書くことに
+     */
+    int matchExcludeRule(List<Token> tokens, int i, ref string result)
     {
-        if(tokens[cnt].surface == "カス" && tokens[cnt].type == PoS.type.SpecificGeneral)
+        if(tokens[i].surface == "カス" && tokens[i].type == PoS.type.SpecificGeneral)
         {
-            result += tokens[cnt].surface;
+            result += tokens[i].surface;
             return 1;
         }
-        else if(tokens[cnt].type == PoS.type.NounsGeneral && Regex.Match(tokens[cnt].surface, "^(ー+|～+)$") != Match.Empty)
+        else if(tokens[i].type == PoS.type.NounsGeneral && Regex.Match(tokens[i].surface, "^(ー+|～+)$") != Match.Empty)
         {
-            result += tokens[cnt].surface;
+            result += tokens[i].surface;
             return 1;
         }
         return 0;
@@ -218,9 +219,9 @@ class OjosamaTranslator
      * 　・前の単語が接頭詞,名詞接続でない
      * 　・前の単語が名詞,サ変接続でない
      */
-    string append_prefix(List<Token> token_list, int cnt)
+    string append_prefix(List<Token> token_list, int i)
     {
-        Token current = token_list[cnt];
+        Token current = token_list[i];
 
         if(this.no_prefix.Contains(current.surface))
             return "";
@@ -233,16 +234,16 @@ class OjosamaTranslator
             return "";
 
         //次が動詞なら接頭辞不要
-        if(token_list.Count > (cnt + 1))
+        if(token_list.Count > (i + 1))
         {
-            Token next = token_list[cnt+1];
+            Token next = token_list[i+1];
             if(next.type == PoS.type.VerbIndependence)
                 return "";
         }
 
-        if(cnt != 0)
+        if(i != 0)
         {
-            Token prev = token_list[cnt-1];
+            Token prev = token_list[i-1];
             //前が接頭詞/名詞接続なら付与しない
             if(prev.type == PoS.type.ConjunctionNoun)
                 return "";
@@ -273,6 +274,7 @@ class OjosamaTranslator
                 "歌姫", "辺境", "舞台", "瞳", "竜", "姫", "闇",
                 "光の騎士"
             };
+        //以下2つはいっぱいありすぎたんで別ファイルに移動
         this.continous = RuleContinuousConv.load();
         this.rules = RuleConvertRule.load();
     }
