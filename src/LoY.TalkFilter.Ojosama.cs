@@ -258,6 +258,11 @@ class OjosamaTranslator
 
     public OjosamaTranslator()
     {
+        if(!Directory.Exists(this.ipadic))
+        {
+            Console.WriteLine($"[LoYTalkFilter][OjosamaTranslator]Error: {this.ipadic} is not exist.");
+            throw new DirectoryNotFoundException(this.ipadic);
+        }
         this.pt = new Regex("[「|｢](.|\n)+[」|｣]");
         this.ascii = new Regex(@"[\d|a-z|A-Z|\<|\>|\=|\/|ａ-ｚ|Ａ-Ｚ|\{|\}]+");
         MeCabParam p = new MeCabParam();

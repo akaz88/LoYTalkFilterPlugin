@@ -3,7 +3,7 @@
 Steam版黄泉ヲ裂ク華の会話文（アイテム説明を含む「」で括られた文章全て）に変換フィルタをかけます。<br>
 現在以下のフィルタが実装されています。<br>
 - 大阪弁
-- 壱百満天原サロメお嬢様風の口調風
+- 壱百満天原サロメお嬢様風の口調風(experimental)
 
 ## 注意事項
 
@@ -44,7 +44,7 @@ BepInEx\config\LoY.TalkFilter.Plugin.cfgとして自動で設定されます。<
 - 大阪
   - 大阪弁に変換します
 - お嬢様
-  - お嬢様風に変換します(experimental)
+  - お嬢様風に変換します
   - あんまりうまく変換されない場合がほとんどです
 
 ## LoYUtilPlugin用MODファイル
@@ -61,10 +61,6 @@ LoYUtilPluginでロードされるスクリプトから参照可能なフラグ�
 | ModTalkFilter | 1920 |
 | TalkFilterOsaka | 1520 |
 | TalkFilterOjosama | 1521 |
-
-## コンパイル
-
-'  '
 
 ## change log
 
